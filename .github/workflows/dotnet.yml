@@ -26,5 +26,6 @@ jobs:
       uses: rohith/publish-nuget@v2
       with:
           PROJECT_FILE_PATH: LaserCatEyes.Domain/LaserCatEyes.Domain.csproj
+          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
           
         
