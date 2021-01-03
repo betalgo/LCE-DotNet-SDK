@@ -20,8 +20,8 @@ Laser Cat Eyes is a network monitoring tool that helps mobile app developers dia
 You need to get **APP_KEY** from [Laser-Cat-Eyes web portal]
 There are different ways to integrate Laser Cat Eyes to your project, feel free to pick one of them or you can enjoy all of them same time. 
 1. You can install [iOS](https://github.com/betalgo/LCE-iOS-SDK) or Android(not avaliable yet) libraries to your application which will provide more insgiht about device. 
-2. You can install [![](https://img.shields.io/nuget/v/LaserCatEyes.EndpointListener?label=nuget.LaserCatEyes.EndpointListener)](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/) which will show you all incoming request to your .Net server.
-3. You can install [![](https://img.shields.io/nuget/v/LaserCatEyes.HttpClientListener?label=nuget.LaserCatEyes.HttpClientListener)](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/) which will show you all outgoing request from your .Net server.
+2. You can install [![](https://img.shields.io/nuget/v/LaserCatEyes.EndpointListener?label=nuget.LaserCatEyes.EndpointListener)](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/) which will show you all **incoming requests** to your .Net server.
+3. You can install [![](https://img.shields.io/nuget/v/LaserCatEyes.HttpClientListener?label=nuget.LaserCatEyes.HttpClientListener)](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/) which will show you all **outgoing request** from your .Net server.
 4. You can develop your custom listener using [![](https://img.shields.io/nuget/v/LaserCatEyes.DataServiceSdk?label=nuget.LaserCatEyes.DataServiceSdk)](https://www.nuget.org/packages/LaserCatEyes.DataServiceSdk/)
 
 *you can use dotnetstandart SDK's if your app is running under .netcore 3.1*
