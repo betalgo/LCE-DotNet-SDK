@@ -16,7 +16,7 @@
 
 Laser Cat Eyes is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
 
-#### How do I get started?
+### How do I get started?
 You need to get **APP_KEY** from [Laser-Cat-Eyes web portal]
 There are different ways to integrate Laser Cat Eyes to your project, feel free to pick one of them or you can enjoy all of them same time. 
 1. You can install [iOS](https://github.com/betalgo/LCE-iOS-SDK) or Android(not avaliable yet) libraries to your application which will provide more insgiht about device. 
@@ -25,12 +25,12 @@ There are different ways to integrate Laser Cat Eyes to your project, feel free 
 4. You can develop your custom listener using (https://img.shields.io/nuget/v/LaserCatEyes.DataServiceSdk?label=nuget.LaserCatEyes.DataServiceSdk)](https://www.nuget.org/packages/LaserCatEyes.DataServiceSdk/)
 
 *you can use dotnetstandart SDK's if your app is running under .netcore 3.1*
-#### Hot to get your APP_KEY :
+### Hot to get your APP_KEY :
 1. Create an account from [Laser-Cat-Eyes web portal]
 2. Create an app
 3. After the hitting save button you should be able to see your **APP KEY**
 
-## Installation & Implementation of EnpointListener
+### Installation & Implementation of EnpointListener
 1. LaserCatEyes is available through [Nuget](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/). 
 First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [LaserCatEyes.EndpointListener](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/) from the package manager console:
 ```
@@ -74,7 +74,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
        ...
     }
 ```
-## Installation & Implementation of HttpClient Listener
+### Installation & Implementation of HttpClient Listener
 1. LaserCatEyes is available through [Nuget](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/). 
 First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [LaserCatEyes.HttpClientListener](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/) from the package manager console:
 ```
