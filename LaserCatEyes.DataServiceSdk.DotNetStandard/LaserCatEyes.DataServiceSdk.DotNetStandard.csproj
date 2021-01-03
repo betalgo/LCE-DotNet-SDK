@@ -1,11 +1,24 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
     <Copyright>Betalgo Up Ltd.</Copyright>
+    <PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
+    <PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageIcon>LaserCatEyes@3x.png</PackageIcon>
+    <Version>0.0.1</Version>
+    <Authors>Tolga Kayhan</Authors>
+    <Company>Betalgo Up Ltd.</Company>
+    <Product>Laser Cat Eyes</Product>
+    <Description>
+      Laser Cat Eyes is an online debugging tool that can capture, inspect, monitor all HTTP/HTTPS traffic from your application. It contains a network function like diagnose network issues, etc.
+
+      With Laser Cat Eyes all team members can remotely display in realtime all traffic smoothly that other members capture in their device. It allows team members to test and debug scripts right along with each other in realtime remotely. Laser Cat Eyes is a comprehensive helper to save time, to improve productivity with its easy to use layout, also it helps to play a lot with request and response.
+
+      All internal traffics that we are sending and receiving between the web browser/client and the server is invisible, and this brings difficulty, stress. Determining where is the fault exactly is a time-consuming process, a small error can sometimes take hours to debug with different browsers, operating systems, and devices, bugs are inevitable. Laser Cat Eyes offers extensive features that make it easy to see what is happening, so you debug your application effectively, quickly diagnose, and fix problems.
+    </Description>
+    <RepositoryUrl>https://github.com/betalgo/LCE-DotNet-SDK</RepositoryUrl>
+    <PackageTags>network, debugging</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\LaserCatEyes.WcfListener.DotNetStandard\LaserCatEyes@3x.png">
+    <None Include="LaserCatEyes_Logo.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
