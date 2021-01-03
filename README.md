@@ -82,15 +82,16 @@ PM> Install-Package LaserCatEyes.HttpClientListener
 ```
 
 2. In ``Startup`` class ``ConfigureServices`` method inject add Endpoint Listener
-To listen all HttpClients
+
+#### To listen all HttpClients
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
         if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
         {
             //Seriously don't run it in production environment 
-            services.AddLaserCatEyesHttpListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
-            services.AddLaserCatEyesHttpListener(option =>
+            services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
+            services.AddLaserCatEyesHttpClientListener(option =>
             {
                 option.AppKey = "";
                 option.AspCoreEnvironment = "";
@@ -100,14 +101,15 @@ To listen all HttpClients
         }
     }
 ```
-Listen only selected HttpClients
+or
+#### Listen only selected HttpClients
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
         if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
         {
             //Seriously don't run it in production environment 
-            services.AddLaserCatEyesHttpListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL, listenAllHttpClients: false);
+            services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL, listenAllHttpClients: false);
             services.AddHttpClient("myClient", c =>
             {
                 //your settings
