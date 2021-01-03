@@ -17,19 +17,20 @@
 Laser Cat Eyes is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
 
 #### How do I get started?
-You need to get APP_KEY from [Laser-Cat-Eyes web portal]
+You need to get **APP_KEY** from [Laser-Cat-Eyes web portal]
 There are different ways to integrate Laser Cat Eyes to your project, feel free to pick one of them or you can enjoy all of them same time. 
 1. You can install [iOS](https://github.com/betalgo/LCE-iOS-SDK) or Android(not avaliable yet) libraries to your application which will provide more insgiht about device. 
 2. You can install [![Version](https://img.shields.io/nuget/v/LaserCatEyes.EndpointListener?label=nuget.LaserCatEyes.EndpointListener)](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/) which will show you all incoming request to your .Net server.
 3. You can install [![Version](https://img.shields.io/nuget/v/LaserCatEyes.HttpClientListener?label=nuget.LaserCatEyes.HttpClientListener)](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/) which will show you all outgoing request from your .Net server.
 4. You can develop your custom listener using (https://img.shields.io/nuget/v/LaserCatEyes.DataServiceSdk?label=nuget.LaserCatEyes.DataServiceSdk)](https://www.nuget.org/packages/LaserCatEyes.DataServiceSdk/)
 
+*you can use dotnetstandart SDK's if your app is running under .netcore 3.1*
 #### Hot to get your APP_KEY :
 1. Create an account from [Laser-Cat-Eyes web portal]
 2. Create an app
 3. After the hitting save button you should be able to see your **APP KEY**
 
-## Installation & Implementation of EnppointListener
+## Installation & Implementation of EnpointListener
 1. LaserCatEyes is available through [Nuget](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/). 
 First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [LaserCatEyes.EndpointListener](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/) from the package manager console:
 ```
@@ -60,7 +61,15 @@ PM> Install-Package LaserCatEyes.EndpointListener
         {
            ... 
            //Seriously don't run it in production environment 
-            services.AddLaserCatEyesEndpointListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);           
+           services.AddLaserCatEyesEndpointListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
+           //OR (more option will be available soon)
+           services.AddLaserCatEyesHttpListener(option =>
+           {
+               option.AppKey = MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL;
+               option.AspCoreEnvironment = "STAGE";
+               option.Version = "1.2.3.4";
+               option.BuildNumber = "1";
+           });               
         }
        ...
     }
@@ -73,18 +82,37 @@ PM> Install-Package LaserCatEyes.HttpClientListener
 ```
 
 2. In ``Startup`` class ``ConfigureServices`` method inject add Endpoint Listener
-
+To listen all HttpClients
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        ...
-        if (env.IsDevelopment())//This is a debugging tool, you don't want to it in prodcution right!?
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to it in prodcution right!?
         {
-           ... 
-           //Seriously don't run it in production environment 
-            services.AddLaserCatEyesEndpointListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);           
+            //Seriously don't run it in production environment 
+            services.AddLaserCatEyesHttpListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
+            services.AddLaserCatEyesHttpListener(option =>
+            {
+                option.AppKey = "";
+                option.AspCoreEnvironment = "";
+                option.Version = "1.2.3.4";
+                option.BuildNumber = "1";
+            });
         }
-       ...
+    }
+```
+Listen only selected HttpClients
+```csharp
+    public void ConfigureServices(IServiceCollection services)
+    {
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to it in prodcution right!?
+        {
+            //Seriously don't run it in production environment 
+            services.AddLaserCatEyesHttpListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL, listenAllHttpClients: false);
+            services.AddHttpClient("myClient", c =>
+            {
+                //your settings
+            }).AddHttpMessageHandler<LaserCatEyesHttpMessageHandler>();
+        }
     }
 ```
 
