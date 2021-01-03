@@ -21,11 +21,47 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    
     - name: publish LaserCatEyes.Domain 
-      id: publish_nuget
+      id: publish_nuget_LaserCatEyes.Domain
       uses: rohith/publish-nuget@v2
       with:
           PROJECT_FILE_PATH: LaserCatEyes.Domain/LaserCatEyes.Domain.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+    
+    - name: publish LaserCatEyes.DataServiceSdk.DotNetStandard 
+      id: publish_nuget_DataServiceSdk.DotNetStandard
+      uses: rohith/publish-nuget@v2
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.DataServiceSdk.DotNetStandard/LaserCatEyes.DataServiceSdk.DotNetStandard.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+    
+    - name: publish LaserCatEyes.HttpClientListener.DotNetStandard
+      id: publish_nuget_HttpClientListener.DotNetStandard
+      uses: rohith/publish-nuget@v2
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.HttpClientListener.DotNetStandard/LaserCatEyes.HttpClientListener.DotNetStandard.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+    
+    - name: publish LaserCatEyes.DataServiceSdk 
+      id: publish_nuget_LaserCatEyes.DataServiceSdk
+      uses: rohith/publish-nuget@v2
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.DataServiceSdk/LaserCatEyes.DataServiceSdk.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+    
+    - name: publish LaserCatEyes.EndpointListener 
+      id: publish_nuget_LaserCatEyes.EndpointListener
+      uses: rohith/publish-nuget@v2
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.EndpointListener/LaserCatEyes.EndpointListener.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+    
+    - name: publish LaserCatEyes.HttpClientListener 
+      id: publish_nuget_LaserCatEyes.HttpClientListener
+      uses: rohith/publish-nuget@v2
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.HttpClientListener/LaserCatEyes.HttpClientListener.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
           
         
