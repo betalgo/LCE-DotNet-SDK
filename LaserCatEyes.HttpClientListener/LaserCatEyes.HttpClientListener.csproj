@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
     <PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.1</Version>
+    <Version>0.0.2</Version>
     <Authors>Tolga Kayhan</Authors>
     <Company>Betalgo Up Ltd.</Company>
     <Product>Laser Cat Eyes</Product>
