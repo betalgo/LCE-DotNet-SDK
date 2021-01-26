@@ -12,6 +12,7 @@ namespace LaserCatEyes.DataServiceSdk
     {
         public static void Forget(this Task task)
         {
+            // https://www.meziantou.net/fire-and-forget-a-task-in-dotnet.htm
             // note: this code is inspired by a tweet from Ben Adams: https://twitter.com/ben_a_adams/status/1045060828700037125
             // Only care about tasks that may fault (not completed) or are faulted,
             // so fast-path for SuccessfullyCompleted and Canceled tasks.

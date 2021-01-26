@@ -7,7 +7,7 @@
     <PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Version>0.0.1</Version>
-    <Authors>Tolga Kayhan</Authors>
+    <Authors>Betalgo Up Ltd.</Authors>
     <Company>Betalgo Up Ltd.</Company>
     <Product>Laser Cat Eyes</Product>
     <Description>Laser Cat Eyes is an online debugging tool that can capture, inspect, monitor all HTTP/HTTPS traffic from your application. It contains a network function like diagnose network issues, etc.
