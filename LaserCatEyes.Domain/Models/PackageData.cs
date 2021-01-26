@@ -17,6 +17,7 @@ namespace LaserCatEyes.Domain.Models
         {
             return new PackageData
             {
+                Id = id,
                 RequestPackage = new RequestPackage(id, url, methodType, headers, body, timeStamp)
             };
         }
@@ -25,6 +26,7 @@ namespace LaserCatEyes.Domain.Models
         {
             return new PackageData
             {
+                Id = id,
                 ResponsePackage = new ResponsePackage(id, statusCode, headers, body, timeStamp)
             };
         }
