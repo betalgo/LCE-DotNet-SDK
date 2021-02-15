@@ -20,22 +20,20 @@ namespace LaserCatEyes.EndpointListener
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            var request = context?.Request;
-            if (request == null)
+            if (context?.Request == null)
             {
                 await next(context);
                 return;
             }
-
-            request.EnableBuffering();
             var operationId = Guid.NewGuid();
 
+            context.Request.EnableBuffering();
             _laserCatEyesDataService.Report(PackageData.CreateRequestPackage(
                 operationId,
                 $"{context.Request.Scheme}://{context.Request.Host}{context.Request.Path}{context.Request.QueryString}",
                 Utilities.HttpMethodStringToEnumConverter(context.Request.Method),
                 context.Request.Headers?.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
-                await Utilities.ReadBodyStream(request.Body),
+                await Utilities.ReadBodyStream(context.Request.Body),
                 DateTime.UtcNow
             ));
 
@@ -48,7 +46,7 @@ namespace LaserCatEyes.EndpointListener
             replacementResponseBody.Position = 0;
             await replacementResponseBody.CopyToAsync(originalResponseBody);
             context.Response.Body = originalResponseBody;
-
+            await Task.Delay(400);//TODO delete later, added for fixing Frontend bug
             _laserCatEyesDataService.Report(PackageData.CreateResponsePackage(
                 operationId,
                 context.Response.StatusCode,
