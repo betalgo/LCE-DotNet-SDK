@@ -6,7 +6,7 @@
     <PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
     <PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.3</Version>
+    <Version>0.0.4</Version>
     <Authors>Betalgo Up Ltd.</Authors>
     <Company>Betalgo Up Ltd.</Company>
     <Product>Laser Cat Eyes</Product>
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>

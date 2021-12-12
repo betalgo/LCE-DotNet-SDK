@@ -25,6 +25,7 @@ namespace LaserCatEyes.EndpointListener
                 await next(context);
                 return;
             }
+
             var operationId = Guid.NewGuid();
 
             context.Request.EnableBuffering();
@@ -46,8 +47,7 @@ namespace LaserCatEyes.EndpointListener
             replacementResponseBody.Position = 0;
             await replacementResponseBody.CopyToAsync(originalResponseBody);
             context.Response.Body = originalResponseBody;
-            await Task.Delay(400);//TODO delete later, added for fixing Frontend bug
-            _laserCatEyesDataService.Report(PackageData.CreateResponsePackage(
+           _laserCatEyesDataService.Report(PackageData.CreateResponsePackage(
                 operationId,
                 context.Response.StatusCode,
                 context.Response.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
