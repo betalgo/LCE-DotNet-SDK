@@ -13,7 +13,7 @@ namespace SampleNetServerApp
     {
         private readonly IWebHostEnvironment _env;
 
-        public Startup(IWebHostEnvironment env,IConfiguration configuration)
+        public Startup(IWebHostEnvironment env, IConfiguration configuration)
         {
             _env = env;
             Configuration = configuration;
@@ -26,9 +26,10 @@ namespace SampleNetServerApp
         {
             if (_env.IsDevelopment())
             {
-                services.AddLaserCatEyesEndpointListener("APP_KEY");
-                services.AddLaserCatEyesHttpClientListener("APP_KEY");
+                services.AddLaserCatEyesEndpointListener("cd579d47-eafb-44df-bfc7-ad1f4dd013d5");
+                services.AddLaserCatEyesHttpClientListener("cd579d47-eafb-44df-bfc7-ad1f4dd013d5");
             }
+
             services.AddControllers();
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo {Title = "SampleNetServerApp", Version = "v1"}); });
         }

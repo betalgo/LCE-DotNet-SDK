@@ -13,7 +13,6 @@ namespace LaserCatEyes.HttpClientListener
         public LaserCatEyesHttpMessageHandler(ILaserCatEyesDataService laserCatEyesDataService)
         {
             _laserCatEyesDataService = laserCatEyesDataService ?? throw new ArgumentNullException(nameof(laserCatEyesDataService));
-            InnerHandler ??= new HttpClientHandler();
         }
 
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
@@ -25,9 +24,10 @@ namespace LaserCatEyes.HttpClientListener
 
             var operationId = Guid.NewGuid();
             _laserCatEyesDataService.Report(PackageDataHelper.RequestPackageDataFromHttpRequestMessage(operationId, request));
-            var response = await base.SendAsync(request, cancellationToken);
-            _laserCatEyesDataService.Report(PackageDataHelper.ResponsePackageDataFromHttpResponseMessage(operationId, response));
 
+            var response = await base.SendAsync(request, cancellationToken);
+            
+            _laserCatEyesDataService.Report(PackageDataHelper.ResponsePackageDataFromHttpResponseMessage(operationId, response));
             return response;
         }
     }

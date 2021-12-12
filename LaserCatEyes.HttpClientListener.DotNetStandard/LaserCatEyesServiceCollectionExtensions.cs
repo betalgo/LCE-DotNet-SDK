@@ -11,19 +11,30 @@ namespace LaserCatEyes.HttpClientListener.DotNetStandard
 {
     public static class HttpClientListenerServiceCollectionExtensions
     {
-        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, string appKey)
+        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, string appKey, bool listenAllHttpClients = true)
         {
             services.TryAddSingleton(Options.Create(new LaserCatEyesOptions(appKey)));
-            services.TryAddSingleton<ILaserCatEyesDataService, LaserCatEyesDataService>();
-            services.Replace(ServiceDescriptor.Singleton<IHttpMessageHandlerBuilderFilter, LaserCatEyesHttpMessageHandlerFilter>());
-            return services;
+            return AddLaserCatEyesHttpClientListenerBase(services, listenAllHttpClients);
         }
 
-        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, Action<LaserCatEyesOptions> setupAction)
+        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, Action<LaserCatEyesOptions> setupAction, bool listenAllHttpClients = true)
         {
             services.TryAddSingleton<IConfigureOptions<LaserCatEyesOptions>>(new ConfigureNamedOptions<LaserCatEyesOptions>(setupAction.Method.Name, setupAction));
+            return AddLaserCatEyesHttpClientListenerBase(services, listenAllHttpClients);
+        }
+
+        private static IServiceCollection AddLaserCatEyesHttpClientListenerBase(IServiceCollection services, bool listenAllHttpClients)
+        {
             services.TryAddSingleton<ILaserCatEyesDataService, LaserCatEyesDataService>();
-            services.Replace(ServiceDescriptor.Singleton<IHttpMessageHandlerBuilderFilter, LaserCatEyesHttpMessageHandlerFilter>());
+            services.AddTransient<LaserCatEyesHttpMessageHandler>();
+            if (listenAllHttpClients)
+            {
+                services.ConfigureAll<HttpClientFactoryOptions>(options =>
+                {
+                    options.HttpMessageHandlerBuilderActions.Add(builder => { builder.AdditionalHandlers.Add(builder.Services.GetRequiredService<LaserCatEyesHttpMessageHandler>()); });
+                });
+            }
+
             return services;
         }
     }

@@ -1,4 +1,5 @@
 ﻿// ReSharper disable InconsistentNaming
+
 namespace LaserCatEyes.Domain.Models
 {
     public enum MethodType
