@@ -2,6 +2,7 @@
 using LaserCatEyes.DataServiceSdk;
 using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Http;
@@ -11,6 +12,19 @@ namespace LaserCatEyes.HttpClientListener
 {
     public static class HttpClientListenerServiceCollectionExtensions
     {
+        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, LaserCatEyesOptions options, bool listenAllHttpClients = true)
+        {
+            services.TryAddSingleton(options);
+            return AddLaserCatEyesHttpClientListenerBase(services, listenAllHttpClients);
+        }
+
+        public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, bool listenAllHttpClients = true)
+        {
+            var configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
+            services.Configure<LaserCatEyesOptions>(configuration.GetSection(LaserCatEyesOptions.SettingKey));
+            return AddLaserCatEyesHttpClientListenerBase(services, listenAllHttpClients);
+        }
+
         public static IServiceCollection AddLaserCatEyesHttpClientListener(this IServiceCollection services, string appKey, bool listenAllHttpClients = true)
         {
             services.TryAddSingleton(Options.Create(new LaserCatEyesOptions(appKey)));
@@ -34,6 +48,7 @@ namespace LaserCatEyes.HttpClientListener
                     options.HttpMessageHandlerBuilderActions.Add(builder => { builder.AdditionalHandlers.Add(builder.Services.GetRequiredService<LaserCatEyesHttpMessageHandler>()); });
                 });
             }
+
             return services;
         }
     }

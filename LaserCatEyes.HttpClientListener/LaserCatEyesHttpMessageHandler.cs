@@ -26,7 +26,7 @@ namespace LaserCatEyes.HttpClientListener
             _laserCatEyesDataService.Report(PackageDataHelper.RequestPackageDataFromHttpRequestMessage(operationId, request));
 
             var response = await base.SendAsync(request, cancellationToken);
-            
+
             _laserCatEyesDataService.Report(PackageDataHelper.ResponsePackageDataFromHttpResponseMessage(operationId, response));
             return response;
         }

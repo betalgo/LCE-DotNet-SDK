@@ -5,9 +5,8 @@ using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
 using Bogus;
-using LaserCatEyes.DataServiceSdk;
-using LaserCatEyes.Domain.Models;
 using LaserCatEyes.HttpClientListener;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace SampleDotNetCoreClientApp
@@ -17,11 +16,16 @@ namespace SampleDotNetCoreClientApp
         private static async Task Main(string[] args)
         {
             const string baseDomain = "https://localhost:44328";
-       
 
             var serviceCollection = new ServiceCollection().AddLogging();
+
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<Program>();
+            IConfiguration configuration = builder.Build();
+            serviceCollection.AddScoped(_ => configuration);
+
             serviceCollection.AddHttpClient<ISimpleClass, SimpleClass>();
-            serviceCollection.AddLaserCatEyesHttpClientListener("cd579d47-eafb-44df-bfc7-ad1f4dd013d5");
+            serviceCollection.AddLaserCatEyesHttpClientListener();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var simpleClass = serviceProvider.GetRequiredService<ISimpleClass>();

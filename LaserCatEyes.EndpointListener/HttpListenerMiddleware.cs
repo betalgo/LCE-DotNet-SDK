@@ -47,7 +47,7 @@ namespace LaserCatEyes.EndpointListener
             replacementResponseBody.Position = 0;
             await replacementResponseBody.CopyToAsync(originalResponseBody);
             context.Response.Body = originalResponseBody;
-           _laserCatEyesDataService.Report(PackageData.CreateResponsePackage(
+            _laserCatEyesDataService.Report(PackageData.CreateResponsePackage(
                 operationId,
                 context.Response.StatusCode,
                 context.Response.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),

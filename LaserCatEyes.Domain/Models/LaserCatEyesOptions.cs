@@ -4,6 +4,8 @@ namespace LaserCatEyes.Domain.Models
 {
     public class LaserCatEyesOptions
     {
+        public static string SettingKey = "LaserCatEyesOptions";
+
         public LaserCatEyesOptions(string appKey)
         {
             AppKey = appKey;
