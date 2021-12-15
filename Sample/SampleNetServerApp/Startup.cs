@@ -26,8 +26,8 @@ namespace SampleNetServerApp
         {
             if (_env.IsDevelopment())
             {
-                services.AddLaserCatEyesEndpointListener("cd579d47-eafb-44df-bfc7-ad1f4dd013d5");
-                services.AddLaserCatEyesHttpClientListener("cd579d47-eafb-44df-bfc7-ad1f4dd013d5");
+                services.AddLaserCatEyesEndpointListener();
+                services.AddLaserCatEyesHttpClientListener();
             }
 
             services.AddControllers();
