@@ -2,6 +2,8 @@
 {
     public class LaserCatEyesSystemOptions
     {
+        public static string SettingKey = "LaserCatEyesSystemOptions";
+
         public string BaseAddress { get; set; } = "https://data.lasercateyes.com/";
         public string AlgoronaClientId { get; set; } = "33f4bbd2-4765-4336-a352-79fb7ff53921";
         public string AlgoronaCulture { get; set; } = "en-US";

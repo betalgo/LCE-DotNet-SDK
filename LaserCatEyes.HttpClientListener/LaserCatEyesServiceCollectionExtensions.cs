@@ -22,6 +22,11 @@ namespace LaserCatEyes.HttpClientListener
         {
             var configuration = services.BuildServiceProvider().GetRequiredService<IConfiguration>();
             services.Configure<LaserCatEyesOptions>(configuration.GetSection(LaserCatEyesOptions.SettingKey));
+
+            if (configuration.GetSection(LaserCatEyesSystemOptions.SettingKey) != null)
+            {
+                services.Configure<LaserCatEyesSystemOptions>(configuration.GetSection(LaserCatEyesSystemOptions.SettingKey));
+            }
             return AddLaserCatEyesHttpClientListenerBase(services, listenAllHttpClients);
         }
 
