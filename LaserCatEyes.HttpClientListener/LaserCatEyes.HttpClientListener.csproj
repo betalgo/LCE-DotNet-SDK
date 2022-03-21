@@ -1,50 +1,50 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Copyright>Betalgo Up Ltd.</Copyright>
-    <PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
-    <PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Version>0.0.5</Version>
-    <Authors>Betalgo Up Ltd.</Authors>
-    <Company>Betalgo Up Ltd.</Company>
-    <Product>Laser Cat Eyes</Product>
-    <Description>
-      lasercateyes.com
-      Laser Cat Eyes is an online debugging tool that can capture, inspect, monitor all HTTP/HTTPS traffic from your application. It contains a network function like diagnose network issues, etc.
+	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Copyright>Betalgo Up Ltd.</Copyright>
+		<PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
+		<PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Version>1.0.0</Version>
+		<Authors>Betalgo Up Ltd.</Authors>
+		<Company>Betalgo Up Ltd.</Company>
+		<Product>Laser Cat Eyes</Product>
+		<Description>
+			lasercateyes.com
+			Laser Cat Eyes is an online debugging tool that can capture, inspect, monitor all HTTP/HTTPS traffic from your application. It contains a network function like diagnose network issues, etc.
 
-      With Laser Cat Eyes all team members can remotely display in realtime all traffic smoothly that other members capture in their device. It allows team members to test and debug scripts right along with each other in realtime remotely. Laser Cat Eyes is a comprehensive helper to save time, to improve productivity with its easy to use layout, also it helps to play a lot with request and response.
+			With Laser Cat Eyes all team members can remotely display in realtime all traffic smoothly that other members capture in their device. It allows team members to test and debug scripts right along with each other in realtime remotely. Laser Cat Eyes is a comprehensive helper to save time, to improve productivity with its easy to use layout, also it helps to play a lot with request and response.
 
-      All internal traffics that we are sending and receiving between the web browser/client and the server is invisible, and this brings difficulty, stress. Determining where is the fault exactly is a time-consuming process, a small error can sometimes take hours to debug with different browsers, operating systems, and devices, bugs are inevitable. Laser Cat Eyes offers extensive features that make it easy to see what is happening, so you debug your application effectively, quickly diagnose, and fix problems.
-    </Description>
-    <RepositoryUrl>https://github.com/betalgo/LCE-DotNet-SDK</RepositoryUrl>
-    <PackageTags>network, debugging</PackageTags>
-  </PropertyGroup>
+			All internal traffics that we are sending and receiving between the web browser/client and the server is invisible, and this brings difficulty, stress. Determining where is the fault exactly is a time-consuming process, a small error can sometimes take hours to debug with different browsers, operating systems, and devices, bugs are inevitable. Laser Cat Eyes offers extensive features that make it easy to see what is happening, so you debug your application effectively, quickly diagnose, and fix problems.
+		</Description>
+		<RepositoryUrl>https://github.com/betalgo/LCE-DotNet-SDK</RepositoryUrl>
+		<PackageTags>network, debugging</PackageTags>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<LangVersion>9</LangVersion>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <LangVersion>9</LangVersion>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<LangVersion>9</LangVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="6.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LaserCatEyes.DataServiceSdk\LaserCatEyes.DataServiceSdk.csproj" />
-    <ProjectReference Include="..\LaserCatEyes.Domain\LaserCatEyes.Domain.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="LaserCatEyes_Logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\LaserCatEyes.DataServiceSdk\LaserCatEyes.DataServiceSdk.csproj" />
+		<ProjectReference Include="..\LaserCatEyes.Domain\LaserCatEyes.Domain.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="LaserCatEyes_Logo.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 </Project>

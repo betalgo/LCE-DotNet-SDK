@@ -9,13 +9,17 @@ namespace LaserCatEyes.DataServiceSdk.DotNetStandard
 {
     public class LaserCatEyesDataService : ILaserCatEyesDataService
     {
-        private readonly HttpClient _client = HttpClientFactory.Create();
+        private readonly HttpClient _client = HttpClientFactory.Create(new HttpClientHandler()
+        {
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+        });
         private readonly Guid _deviceId;
         private readonly LaserCatEyesOptions _laserCatEyesOptions;
         private readonly LaserCatEyesSystemOptions _laserCatEyesSystemOptions;
 
         public LaserCatEyesDataService(IOptions<LaserCatEyesOptions> laserCatEyesOptions, IOptions<LaserCatEyesSystemOptions> laserCatEyesSystemOptions)
         {
+
             _laserCatEyesOptions = laserCatEyesOptions.Value;
             _laserCatEyesSystemOptions = laserCatEyesSystemOptions.Value;
 

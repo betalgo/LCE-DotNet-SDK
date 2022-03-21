@@ -9,7 +9,10 @@ namespace LaserCatEyes.DataServiceSdk
 {
     public class LaserCatEyesDataService : ILaserCatEyesDataService
     {
-        private readonly HttpClient _client = HttpClientFactory.Create();
+        private readonly HttpClient _client = HttpClientFactory.Create(new HttpClientHandler()
+        {
+            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
+        });
         private readonly Guid _deviceId;
         private readonly LaserCatEyesOptions _laserCatEyesOptions;
         private readonly LaserCatEyesSystemOptions _laserCatEyesSystemOptions;
@@ -18,7 +21,7 @@ namespace LaserCatEyes.DataServiceSdk
         {
             _laserCatEyesOptions = laserCatEyesOptions.Value;
             _laserCatEyesSystemOptions = laserCatEyesSystemOptions.Value;
-
+            
             if (string.IsNullOrEmpty(_laserCatEyesOptions.AppKey))
             {
                 throw new Exception("LaserCatEyes AppKey can not be null!");
