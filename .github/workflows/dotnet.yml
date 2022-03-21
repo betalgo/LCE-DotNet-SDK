@@ -24,42 +24,42 @@ jobs:
     
     - name: publish LaserCatEyes.Domain 
       id: publish_nuget_LaserCatEyes_Domain
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.Domain/LaserCatEyes.Domain.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
     
     - name: publish LaserCatEyes.DataServiceSdk.DotNetStandard 
       id: publish_nuget_LaserCatEyes_DataServiceSdk_DotNetStandard
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.DataServiceSdk.DotNetStandard/LaserCatEyes.DataServiceSdk.DotNetStandard.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
     
     - name: publish LaserCatEyes.HttpClientListener.DotNetStandard
       id: publish_nuget_LaserCatEyes_HttpClientListener_DotNetStandard
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.HttpClientListener.DotNetStandard/LaserCatEyes.HttpClientListener.DotNetStandard.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
     
     - name: publish LaserCatEyes.DataServiceSdk 
       id: publish_nuget_LaserCatEyes_DataServiceSdk
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.DataServiceSdk/LaserCatEyes.DataServiceSdk.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
     
     - name: publish LaserCatEyes.EndpointListener 
       id: publish_nuget_LaserCatEyes_EndpointListener
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.EndpointListener/LaserCatEyes.EndpointListener.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
     
     - name: publish LaserCatEyes.HttpClientListener 
       id: publish_nuget_LaserCatEyes_HttpClientListener
-      uses: rohith/publish-nuget@v2
+      uses: alirezanet/publish-nuget@v3.0.0
       with:
           PROJECT_FILE_PATH: LaserCatEyes.HttpClientListener/LaserCatEyes.HttpClientListener.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
