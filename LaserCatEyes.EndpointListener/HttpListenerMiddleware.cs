@@ -6,21 +6,33 @@ using LaserCatEyes.DataServiceSdk;
 using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 
 namespace LaserCatEyes.EndpointListener
 {
     public class EndpointListenerMiddleware : IMiddleware
     {
         private readonly ILaserCatEyesDataService _laserCatEyesDataService;
-
-        public EndpointListenerMiddleware(ILaserCatEyesDataService laserCatEyesDataService)
+        private readonly bool _isServiceReady;
+        public EndpointListenerMiddleware(ILaserCatEyesDataService laserCatEyesDataService, ILogger<EndpointListenerMiddleware> logger)
         {
+            if (laserCatEyesDataService == null)
+            {
+                logger.LogWarning($"Couldn't bind {nameof(EndpointListenerMiddleware)} because {nameof(ILaserCatEyesDataService)} is null");
+                return;
+            }
+            if(!laserCatEyesDataService.IsServiceReady())
+            {
+                logger.LogWarning($"Couldn't bind {nameof(EndpointListenerMiddleware)} because {nameof(ILaserCatEyesDataService)} was not ready");
+                return;
+            }
             _laserCatEyesDataService = laserCatEyesDataService;
+            _isServiceReady = true;
         }
 
         public async Task InvokeAsync(HttpContext context, RequestDelegate next)
         {
-            if (context?.Request == null)
+            if (context?.Request == null || !_isServiceReady)
             {
                 await next(context);
                 return;
@@ -35,7 +47,9 @@ namespace LaserCatEyes.EndpointListener
                 Utilities.HttpMethodStringToEnumConverter(context.Request.Method),
                 context.Request.Headers?.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
                 await Utilities.ReadBodyStream(context.Request.Body),
-                DateTime.UtcNow
+                DateTime.UtcNow,
+                context.Connection?.LocalIpAddress?.ToString(),
+                context.Connection?.RemoteIpAddress?.ToString()
             ));
 
             var originalResponseBody = context.Response.Body;

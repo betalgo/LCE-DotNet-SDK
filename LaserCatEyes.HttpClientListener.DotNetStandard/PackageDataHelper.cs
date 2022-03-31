@@ -15,7 +15,10 @@ namespace LaserCatEyes.HttpClientListener.DotNetStandard
                 request.RequestUri.ToString(),
                 Utilities.HttpMethodStringToEnumConverter(request.Method.Method),
                 request.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
-                request.Content?.ReadAsStringAsync().Result, DateTime.UtcNow);
+                request.Content?.ReadAsStringAsync().Result, 
+                DateTime.UtcNow,
+                null,
+                null);
         }
 
         public static PackageData ResponsePackageDataFromHttpResponseMessage(Guid id, HttpResponseMessage response)
