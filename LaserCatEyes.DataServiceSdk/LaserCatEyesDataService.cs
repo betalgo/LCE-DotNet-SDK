@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
+using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
 namespace LaserCatEyes.DataServiceSdk
@@ -13,18 +14,21 @@ namespace LaserCatEyes.DataServiceSdk
         {
             ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
         });
+
         private readonly Guid _deviceId;
         private readonly LaserCatEyesOptions _laserCatEyesOptions;
         private readonly LaserCatEyesSystemOptions _laserCatEyesSystemOptions;
+        private readonly bool _serviceReady;
 
-        public LaserCatEyesDataService(IOptions<LaserCatEyesOptions> laserCatEyesOptions, IOptions<LaserCatEyesSystemOptions> laserCatEyesSystemOptions)
+        public LaserCatEyesDataService(IOptions<LaserCatEyesOptions> laserCatEyesOptions, IOptions<LaserCatEyesSystemOptions> laserCatEyesSystemOptions, ILogger<LaserCatEyesDataService> logger)
         {
             _laserCatEyesOptions = laserCatEyesOptions.Value;
             _laserCatEyesSystemOptions = laserCatEyesSystemOptions.Value;
-            
+
             if (string.IsNullOrEmpty(_laserCatEyesOptions.AppKey))
             {
-                throw new Exception("LaserCatEyes AppKey can not be null!");
+                logger.LogWarning("LaserCatEyes AppKey is NULL!");
+                return;
             }
 
             var deviceName = $"{Environment.MachineName}:{Environment.UserName}";
@@ -57,18 +61,35 @@ namespace LaserCatEyes.DataServiceSdk
             _deviceId = httpResponseMessage.Content.ReadAsAsync<SubAppUpdateResponseModel>().Result.DeviceId;
 
             _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaDeviceId, _deviceId.ToString());
+            _serviceReady = true;
         }
 
 
         public async Task<HttpResponseMessage> ReportTask(PackageData data)
         {
+            if (!_serviceReady)
+            {
+                return null;
+            }
+
             data.DeviceUuid = _laserCatEyesOptions.DeviceUuid;
             data.DeviceId = _deviceId;
             return await _client.PostAsJsonAsync(_laserCatEyesSystemOptions.Endpoints.DataSendPackage, data);
         }
 
+
+        public bool IsServiceReady()
+        {
+            return _serviceReady;
+        }
+
         public void Report(PackageData data)
         {
+            if (!_serviceReady)
+            {
+                return;
+            }
+
             Task.Run(() => ReportTask(data)).Forget();
         }
 

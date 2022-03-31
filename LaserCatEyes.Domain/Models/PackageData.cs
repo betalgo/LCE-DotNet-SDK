@@ -12,13 +12,17 @@ namespace LaserCatEyes.Domain.Models
         public Guid? DeviceId { get; set; }
         public Guid? DeviceUuid { get; set; }
         public Guid? AppId { get; set; }
+        public string LocalIpAddress { get; set; }
+        public string RemoteIpAddress { get; set; }
 
-        public static PackageData CreateRequestPackage(Guid id, string url, MethodType methodType, List<string> headers, string body, DateTime? timeStamp)
+        public static PackageData CreateRequestPackage(Guid id, string url, MethodType methodType, List<string> headers, string body, DateTime? timeStamp, string localIpAddress, string remoteIpAddress)
         {
             return new PackageData
             {
                 Id = id,
-                RequestPackage = new RequestPackage(id, url, methodType, headers, body, timeStamp)
+                RequestPackage = new RequestPackage(id, url, methodType, headers, body, timeStamp),
+                LocalIpAddress = localIpAddress,
+                RemoteIpAddress = remoteIpAddress
             };
         }
 
