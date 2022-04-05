@@ -12,8 +12,9 @@ namespace LaserCatEyes.EndpointListener
 {
     public class EndpointListenerMiddleware : IMiddleware
     {
-        private readonly ILaserCatEyesDataService _laserCatEyesDataService;
         private readonly bool _isServiceReady;
+        private readonly ILaserCatEyesDataService _laserCatEyesDataService;
+
         public EndpointListenerMiddleware(ILaserCatEyesDataService laserCatEyesDataService, ILogger<EndpointListenerMiddleware> logger)
         {
             if (laserCatEyesDataService == null)
@@ -21,11 +22,13 @@ namespace LaserCatEyes.EndpointListener
                 logger.LogWarning($"Couldn't bind {nameof(EndpointListenerMiddleware)} because {nameof(ILaserCatEyesDataService)} is null");
                 return;
             }
-            if(!laserCatEyesDataService.IsServiceReady())
+
+            if (!laserCatEyesDataService.IsServiceReady())
             {
                 logger.LogWarning($"Couldn't bind {nameof(EndpointListenerMiddleware)} because {nameof(ILaserCatEyesDataService)} was not ready");
                 return;
             }
+
             _laserCatEyesDataService = laserCatEyesDataService;
             _isServiceReady = true;
         }

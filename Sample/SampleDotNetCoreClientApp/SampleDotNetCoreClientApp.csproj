@@ -1,18 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <UserSecretsId>550e8434-d2dc-4997-8cda-fe3c4e5a5e86</UserSecretsId>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<UserSecretsId>550e8434-d2dc-4997-8cda-fe3c4e5a5e86</UserSecretsId>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Bogus" Version="34.0.1" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.13" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Bogus" Version="34.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="3.1.23" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\LaserCatEyes.HttpClientListener\LaserCatEyes.HttpClientListener.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\..\LaserCatEyes.HttpClientListener\LaserCatEyes.HttpClientListener.csproj" />
+	</ItemGroup>
 
 </Project>

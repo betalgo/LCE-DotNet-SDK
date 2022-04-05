@@ -12,18 +12,20 @@ namespace LaserCatEyes.HttpClientListener
         private readonly ILaserCatEyesDataService _laserCatEyesDataService;
         private readonly bool _serviceReady;
 
-        public LaserCatEyesHttpMessageHandler(ILaserCatEyesDataService laserCatEyesDataService,ILogger<LaserCatEyesHttpMessageHandler> logger)
+        public LaserCatEyesHttpMessageHandler(ILaserCatEyesDataService laserCatEyesDataService, ILogger<LaserCatEyesHttpMessageHandler> logger)
         {
             if (laserCatEyesDataService == null)
             {
                 logger.LogWarning($"Couldn't bind {nameof(LaserCatEyesHttpMessageHandler)} because {nameof(ILaserCatEyesDataService)} is null");
                 return;
             }
+
             if (!laserCatEyesDataService.IsServiceReady())
             {
                 logger.LogWarning($"Couldn't bind {nameof(LaserCatEyesHttpMessageHandler)} because {nameof(ILaserCatEyesDataService)} was not ready");
                 return;
             }
+
             _laserCatEyesDataService = laserCatEyesDataService;
             _serviceReady = true;
         }
