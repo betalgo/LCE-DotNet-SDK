@@ -15,7 +15,7 @@ namespace LaserCatEyes.HttpClientListener
                 request.RequestUri.ToString(),
                 Utilities.HttpMethodStringToEnumConverter(request.Method.Method),
                 request.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
-                request.Content?.ReadAsStringAsync().Result, 
+                request.Content?.ReadAsStringAsync().Result,
                 DateTime.UtcNow,
                 null,
                 null);
