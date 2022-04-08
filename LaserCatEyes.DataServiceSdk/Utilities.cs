@@ -57,21 +57,15 @@ namespace LaserCatEyes.DataServiceSdk
 
         public static async Task<string> ReadBodyStream(Stream body)
         {
-            if (!body.CanRead)
-            {
-                return null;
-            }
-
-            if (body.Length == 0)
-            {
-                return null;
-            }
-
+            using var reader = new StreamReader(
+                body,
+                Encoding.UTF8,
+                false,
+                leaveOpen: true);
+            var tempPosition = body.Position;
             body.Position = 0;
-
-            using var reader = new StreamReader(body, leaveOpen: true);
-            var bodyString = await reader.ReadToEndAsync().ConfigureAwait(false);
-            body.Position = 0;
+            var bodyString = await reader.ReadToEndAsync();
+            body.Position = tempPosition;
 
             return bodyString;
         }

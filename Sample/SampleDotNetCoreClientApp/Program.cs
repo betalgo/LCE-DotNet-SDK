@@ -25,11 +25,13 @@ namespace SampleDotNetCoreClientApp
             serviceCollection.AddScoped(_ => configuration);
 
             serviceCollection.AddHttpClient<ISimpleClass, SimpleClass>();
+            
             serviceCollection.AddLaserCatEyesHttpClientListener();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();
             var simpleClass = serviceProvider.GetRequiredService<ISimpleClass>();
-            var client = serviceProvider.GetRequiredService<HttpClient>();
+            var clientX = serviceProvider.GetRequiredService<IHttpClientFactory>();
+            var client = clientX.CreateClient();
             await simpleClass.GetData();
 
             var testDataFaker = new Faker<TestData>()
