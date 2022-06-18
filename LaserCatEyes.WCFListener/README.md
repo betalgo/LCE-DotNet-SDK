@@ -10,7 +10,6 @@
 2. Create an app
 3. After the hitting save button you should be able to see your **APP KEY**
 
-```
 ### Installation & Implementation of WCF Listener (Inspector)
 1. LaserCatEyes is available through [Nuget](https://www.nuget.org/packages/LaserCatEyes.WCFListener/). 
 First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). Then, install [LaserCatEyes.WCFListener](https://www.nuget.org/packages/LaserCatEyes.WCFListener/) from the package manager console:
