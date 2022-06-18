@@ -18,25 +18,31 @@ First, [install NuGet](http://docs.nuget.org/docs/start-here/installing-nuget). 
 PM> Install-Package LaserCatEyes.WCFListener
 ```
 
-2. You also need to use LaserCatEyes.HttpClientListener
-```
-PM> Install-Package LaserCatEyes.HttpClientListener.DotNetStandard
-```
-
-3. In ``Startup`` class ``ConfigureServices`` method inject add Endpoint Listener
+2. In ``Startup`` class ``ConfigureServices`` method inject add Endpoint Listener
 
 #### To listen all HttpClients
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in production, right!?
+        if (CurrentEnvironment.IsDevelopment()) 
         {
-            services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
-            services.AddTransient<IClientMessageInspector, LaserCatEyesMessageInspector>();
+            //This is a debugging tool, you don't want to run it in production, right!?
+            services.AddLaserCatEyesWCFListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
         }
     }
 ```
 
+```
+    public class ChannelFactoryHandler<T> : IChannelFactoryHandler<T> where T : class
+    {
+        public ChannelFactoryHandler(ChannelFactory<T> channelFactory, IEndpointBehavior endpointBehavior)
+        {
+            if (CurrentEnvironment.IsDevelopment()) 
+            {
+                channelFactory.Endpoint.EndpointBehaviors.Add(endpointBehavior);
+            }
+        }
+```
 [Laser-Cat-Eyes web portal]: <https://portal.lasercateyes.com>
 [Laser Cat Eyes]: <https://lasercateyes.com>
 

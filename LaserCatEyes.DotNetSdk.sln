@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E2B713
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{55D7CEB2-7296-41D6-BA9D-2BA597B2AD03}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -38,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDotNetCoreClientApp",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleNetServerApp", "Sample\SampleNetServerApp\SampleNetServerApp.csproj", "{6678D16F-3AA0-4F56-92AB-01D86F6E24D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LaserCatEyes.WCFListener", "LaserCatEyes.WCFListener\LaserCatEyes.WCFListener.csproj", "{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaserCatEyes.WCFListener", "LaserCatEyes.WCFListener\LaserCatEyes.WCFListener.csproj", "{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

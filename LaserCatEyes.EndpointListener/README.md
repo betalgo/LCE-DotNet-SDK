@@ -20,7 +20,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         ...
-        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in production, right!?
         {
            ... 
            //Seriously don't run it in production environment 
@@ -35,7 +35,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
     public void ConfigureServices(IServiceCollection services)
     {
         ...
-        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in production, right!?
         {
            ... 
            //Seriously don't run it in production environment 

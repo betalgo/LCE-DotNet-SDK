@@ -20,7 +20,7 @@ PM> Install-Package LaserCatEyes.HttpClientListener
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in production, right!?
         {
             //Seriously don't run it in production environment 
             services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
@@ -39,7 +39,7 @@ or
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in production, right!?
         {
             //Seriously don't run it in production environment 
             services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL, listenAllHttpClients: false);

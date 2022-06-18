@@ -28,14 +28,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference
-			Include="..\LaserCatEyes.DataServiceSdk.DotNetStandard\LaserCatEyes.DataServiceSdk.DotNetStandard.csproj" />
-		<ProjectReference Include="..\LaserCatEyes.Domain\LaserCatEyes.Domain.csproj" />
+		<None Include="LaserCatEyes_Logo.png" Pack="true" PackagePath="" />
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="LaserCatEyes_Logo.png" Pack="true" PackagePath="" />
-		<None Include="README.md" Pack="true" PackagePath="" />
+	  <ProjectReference Include="..\LaserCatEyes.DataServiceSdk.DotNetStandard\LaserCatEyes.DataServiceSdk.DotNetStandard.csproj" />
+	  <ProjectReference Include="..\LaserCatEyes.Domain\LaserCatEyes.Domain.csproj" />
 	</ItemGroup>
 
 </Project>

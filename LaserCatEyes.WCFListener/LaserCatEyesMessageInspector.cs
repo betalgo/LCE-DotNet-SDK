@@ -13,7 +13,7 @@ namespace LaserCatEyes.WCFListener
         private readonly ILaserCatEyesDataService _laserCatEyesDataService;
         private readonly bool _serviceReady;
 
-        public LaserCatEyesMessageInspector(ILaserCatEyesDataService laserCatEyesDataService, ILogger<LaserCatEyesMessageInspector>? logger = null)
+        public LaserCatEyesMessageInspector(ILaserCatEyesDataService laserCatEyesDataService, ILogger<LaserCatEyesMessageInspector> logger = null)
         {
             if (laserCatEyesDataService == null)
             {
