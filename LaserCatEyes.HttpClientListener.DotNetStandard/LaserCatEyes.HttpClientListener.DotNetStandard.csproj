@@ -6,7 +6,7 @@
 		<PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
 		<PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<Authors>Betalgo Up Ltd.</Authors>
 		<Company>Betalgo Up Ltd.</Company>
 		<Product>Laser Cat Eyes</Product>
@@ -20,22 +20,22 @@
 		</Description>
 		<RepositoryUrl>https://github.com/betalgo/LCE-DotNet-SDK</RepositoryUrl>
 		<PackageTags>network, debugging</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Http" Version="2.2.0" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\LaserCatEyes.DataServiceSdk.DotNetStandard\LaserCatEyes.DataServiceSdk.DotNetStandard.csproj" />
+		<ProjectReference
+			Include="..\LaserCatEyes.DataServiceSdk.DotNetStandard\LaserCatEyes.DataServiceSdk.DotNetStandard.csproj" />
 		<ProjectReference Include="..\LaserCatEyes.Domain\LaserCatEyes.Domain.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="LaserCatEyes_Logo.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="LaserCatEyes_Logo.png" Pack="true" PackagePath="" />
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 
 </Project>

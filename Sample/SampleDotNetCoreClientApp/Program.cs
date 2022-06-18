@@ -16,6 +16,7 @@ namespace SampleDotNetCoreClientApp
         private static async Task Main(string[] args)
         {
             const string baseDomain = "https://localhost:44328";
+            // const string baseDomain = "https://localhost:5001";
 
             var serviceCollection = new ServiceCollection().AddLogging();
 
@@ -25,7 +26,7 @@ namespace SampleDotNetCoreClientApp
             serviceCollection.AddScoped(_ => configuration);
 
             serviceCollection.AddHttpClient<ISimpleClass, SimpleClass>();
-            
+
             serviceCollection.AddLaserCatEyesHttpClientListener();
 
             var serviceProvider = serviceCollection.BuildServiceProvider();

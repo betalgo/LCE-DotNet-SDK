@@ -3,7 +3,7 @@
 
 [![LaserCatEyes.HttpClientListener.DotNetStandard](https://img.shields.io/nuget/v/LaserCatEyes.HttpClientListener.DotNetStandard?label=nuget.LaserCatEyes.HttpClientListener.DotNetStandard)](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener.DotNetStandard/)
 
-Laser Cat Eyes is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
+[Laser Cat Eyes] is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
 
 ### Hot to get your APP_KEY :
 1. Create an account from [Laser-Cat-Eyes web portal]
@@ -56,6 +56,7 @@ or
 ```
 
 [Laser-Cat-Eyes web portal]: <https://portal.lasercateyes.com>
+[Laser Cat Eyes]: <https://lasercateyes.com>
 
 ## Author
 
