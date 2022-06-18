@@ -4,7 +4,7 @@
 [![LaserCatEyes.EndpointListener](https://img.shields.io/nuget/v/LaserCatEyes.EndpointListener?label=nuget.LaserCatEyes.EndpointListener)](https://www.nuget.org/packages/LaserCatEyes.EndpointListener/)
 [![LaserCatEyes.DataServiceSdk](https://img.shields.io/nuget/v/LaserCatEyes.DataServiceSdk?label=nuget.LaserCatEyes.DataServiceSdk)](https://www.nuget.org/packages/LaserCatEyes.DataServiceSdk/)
 
-Laser Cat Eyes is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
+[Laser Cat Eyes] is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
 
 *you can use dotnetstandart SDK's if your app is running under .netcore 3.1*
 
@@ -20,7 +20,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
         ...
-        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in production, right!?
         {
            ... 
            //Seriously don't run it in production environment 
@@ -35,7 +35,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
     public void ConfigureServices(IServiceCollection services)
     {
         ...
-        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (env.IsDevelopment())//This is a debugging tool, you don't want to run it in production, right!?
         {
            ... 
            //Seriously don't run it in production environment 
@@ -54,6 +54,7 @@ PM> Install-Package LaserCatEyes.EndpointListener
 ```
 
 [Laser-Cat-Eyes web portal]: <https://portal.lasercateyes.com>
+[Laser Cat Eyes]: <https://lasercateyes.com>
 
 ## Author
 

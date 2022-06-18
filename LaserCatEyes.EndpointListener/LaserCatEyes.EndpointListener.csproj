@@ -20,13 +20,12 @@
 		</Description>
 		<RepositoryUrl>https://github.com/betalgo/LCE-DotNet-SDK</RepositoryUrl>
 		<PackageTags>network, debugging</PackageTags>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<None Include="LaserCatEyes_Logo.png">
-			<Pack>True</Pack>
-			<PackagePath></PackagePath>
-		</None>
+		<None Include="LaserCatEyes_Logo.png" Pack="true" PackagePath="" />
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />

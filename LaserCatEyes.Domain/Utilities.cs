@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using LaserCatEyes.Domain.Models;
 
-namespace LaserCatEyes.DataServiceSdk.DotNetStandard
+namespace LaserCatEyes.Domain
 {
     public static class Utilities
     {

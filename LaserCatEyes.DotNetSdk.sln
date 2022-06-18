@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30804.86
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32526.322
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaserCatEyes.EndpointListener", "LaserCatEyes.EndpointListener\LaserCatEyes.EndpointListener.csproj", "{6953B012-1F16-4C86-AB74-23C4F5FC3ED1}"
 EndProject
@@ -23,6 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E2B713
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentation", "{55D7CEB2-7296-41D6-BA9D-2BA597B2AD03}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -37,6 +38,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleDotNetCoreClientApp", "Sample\SampleDotNetCoreClientApp\SampleDotNetCoreClientApp.csproj", "{7E774EBE-B681-430A-AC2A-2F28474E08F3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleNetServerApp", "Sample\SampleNetServerApp\SampleNetServerApp.csproj", "{6678D16F-3AA0-4F56-92AB-01D86F6E24D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LaserCatEyes.WCFListener", "LaserCatEyes.WCFListener\LaserCatEyes.WCFListener.csproj", "{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -76,6 +79,10 @@ Global
 		{6678D16F-3AA0-4F56-92AB-01D86F6E24D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6678D16F-3AA0-4F56-92AB-01D86F6E24D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6678D16F-3AA0-4F56-92AB-01D86F6E24D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +100,7 @@ Global
 		{68BACA33-4244-4F4E-B03B-55084CED5461} = {2AB160A4-6D9A-43DE-B2D5-E4096B0443D2}
 		{7E774EBE-B681-430A-AC2A-2F28474E08F3} = {5E92817F-20C0-4D02-8698-D9F7FBA95FAC}
 		{6678D16F-3AA0-4F56-92AB-01D86F6E24D6} = {5E92817F-20C0-4D02-8698-D9F7FBA95FAC}
+		{35DB7BC6-2F9D-41D3-9F09-1CB3F34D1735} = {35E9EDC4-69A4-4BC8-976A-7A3C817BAB41}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A80951DD-7E4D-4D23-BB6F-89B70EA6172C}
