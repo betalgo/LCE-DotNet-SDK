@@ -2,7 +2,6 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using LaserCatEyes.DataServiceSdk;
 using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
 using Microsoft.AspNetCore.Http;

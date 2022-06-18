@@ -3,7 +3,7 @@
 
 [![LaserCatEyes.HttpClientListener](https://img.shields.io/nuget/v/LaserCatEyes.HttpClientListener?label=nuget.LaserCatEyes.HttpClientListener)](https://www.nuget.org/packages/LaserCatEyes.HttpClientListener/)
 
-Laser Cat Eyes is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
+[Laser Cat Eyes] is a network monitoring tool that helps mobile app developers diagnose issues between their apps and backend services.
 
 *you can use dotnetstandart SDK's if your app is running under .netcore 3.1*
 
@@ -20,7 +20,7 @@ PM> Install-Package LaserCatEyes.HttpClientListener
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in production, right!?
         {
             //Seriously don't run it in production environment 
             services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL);
@@ -39,7 +39,7 @@ or
 ```csharp
     public void ConfigureServices(IServiceCollection services)
     {
-        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in prodcution, right!?
+        if (CurrentEnvironment.IsDevelopment()) //This is a debugging tool, you don't want to run it in production, right!?
         {
             //Seriously don't run it in production environment 
             services.AddLaserCatEyesHttpClientListener(MY_APP_KEY_FROM_LASER_CAT_EYES_PORTAL, listenAllHttpClients: false);
@@ -52,6 +52,7 @@ or
 ```
 
 [Laser-Cat-Eyes web portal]: <https://portal.lasercateyes.com>
+[Laser Cat Eyes]: <https://lasercateyes.com>
 
 ## Author
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Net.Http;
-using LaserCatEyes.DataServiceSdk.DotNetStandard;
+using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
 
 namespace LaserCatEyes.HttpClientListener.DotNetStandard
