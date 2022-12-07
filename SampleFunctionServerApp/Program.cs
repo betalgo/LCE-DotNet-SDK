@@ -10,7 +10,7 @@ var host = new HostBuilder()
     .ConfigureFunctionsWorkerDefaults(builder =>
     {
         builder.Services.AddLaserCatAzureFunctionEyesEndpointListener(configuration.GetSection("LaserCatEyesOptions:AppKey").Value);
-        builder.UseMiddleware<AzureFunctionEndpointListenerMiddleware>();
+        builder.UseLaserCatEyesEndpointListenerMiddleware();
     })
     .Build();
 

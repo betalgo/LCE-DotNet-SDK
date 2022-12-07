@@ -71,3 +71,10 @@ jobs:
           PROJECT_FILE_PATH: LaserCatEyes.WCFListener/LaserCatEyes.WCFListener.csproj
           NUGET_KEY: ${{secrets.NUGET_KEY}}
 
+    - name: publish LaserCatEyes.LaserCatEyes.AzureFunctionEndpointListener 
+      id: publish_nuget_LaserCatEyes_AzureFunctionEndpointListener
+      uses: alirezanet/publish-nuget@v3.0.3
+      with:
+          PROJECT_FILE_PATH: LaserCatEyes.AzureFunctionEndpointListener/LaserCatEyes.AzureFunctionEndpointListener.csproj
+          NUGET_KEY: ${{secrets.NUGET_KEY}}
+
