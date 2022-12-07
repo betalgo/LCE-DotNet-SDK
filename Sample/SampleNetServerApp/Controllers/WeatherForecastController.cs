@@ -34,6 +34,12 @@ namespace SampleNetServerApp.Controllers
                 })
                 .ToArray();
         }
+        
+        [HttpGet("Error")]
+        public IEnumerable<WeatherForecast> GetError()
+        {
+            throw new NotImplementedException();
+        }
 
         [HttpPost]
         public IActionResult Post(TestData model)
