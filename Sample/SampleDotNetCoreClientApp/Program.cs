@@ -44,35 +44,37 @@ namespace SampleDotNetCoreClientApp
             while (true)
             {
                 var fakeData = testDataFaker.Generate();
-                //await client.GetAsync($"{baseDomain}/WeatherForecast?" +
-                //                      $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
-                
+                await client.GetAsync($"{baseDomain}/WeatherForecast?" +
+                                      $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
+
                 await client.GetAsync($"{baseDomainFunction}/api/Function1?" +
+                                      $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
+                
+                
+                Console.Write(".");
+                Thread.Sleep(1000);
+
+                fakeData = testDataFaker.Generate();
+                fakeData.InnerClassData = testDataFaker.Generate();
+
+
+                await client.PostAsync($"{baseDomain}/WeatherForecast", new StringContent(JsonSerializer.Serialize(fakeData), Encoding.UTF8, "application/json"));
+                Console.Write(".");
+                Thread.Sleep(1000);
+
+                fakeData = testDataFaker.Generate();
+                await client.GetAsync($"{baseDomain}/WeatherForecast/Error?" +
                                       $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
                 Console.Write(".");
                 Thread.Sleep(1000);
 
-                //fakeData = testDataFaker.Generate();
-                //fakeData.InnerClassData = testDataFaker.Generate();
+                fakeData = testDataFaker.Generate();
+                fakeData.InnerClassData = testDataFaker.Generate();
 
 
-                //await client.PostAsync($"{baseDomain}/WeatherForecast", new StringContent(JsonSerializer.Serialize(fakeData), Encoding.UTF8, "application/json"));
-                //Console.Write(".");
-                //Thread.Sleep(1000);
-
-                //fakeData = testDataFaker.Generate();
-                //await client.GetAsync($"{baseDomain}/WeatherForecast/Error?" +
-                //                      $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
-                //Console.Write(".");
-                //Thread.Sleep(1000);
-
-                //fakeData = testDataFaker.Generate();
-                //fakeData.InnerClassData = testDataFaker.Generate();
-
-
-                //await client.PostAsync($"{baseDomain}/WeatherForecast", new StringContent(JsonSerializer.Serialize(fakeData), Encoding.UTF8, "application/json"));
-                //Console.WriteLine(".");
-                //Thread.Sleep(1000);
+                await client.PostAsync($"{baseDomain}/WeatherForecast", new StringContent(JsonSerializer.Serialize(fakeData), Encoding.UTF8, "application/json"));
+                Console.WriteLine(".");
+                Thread.Sleep(1000);
             }
         }
 
