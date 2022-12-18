@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<TargetFramework>net6.0</TargetFramework>
 		<Copyright>Betalgo Up Ltd.</Copyright>
 		<PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
 		<PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
@@ -25,9 +25,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.7" />
-		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.23" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
 		<PackageReference Include="Microsoft.Extensions.Http" Version="3.1.23" />
-		<PackageReference Include="Microsoft.Extensions.Options" Version="3.1.23" />
+		<PackageReference Include="Microsoft.Extensions.Options" Version="6.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
