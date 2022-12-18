@@ -10,9 +10,10 @@ namespace LaserCatEyes.AzureFunctionEndpointListener
             IPAddress? result = null;
             if (request.Headers.TryGetValues("X-Forwarded-For", out var values))
             {
-                var ipn = values.FirstOrDefault()?.Split(new[] { ',' }).FirstOrDefault()?.Split(new char[] { ':' }).FirstOrDefault();
+                var ipn = values.FirstOrDefault()?.Split(new[] {','}).FirstOrDefault()?.Split(new char[] {':'}).FirstOrDefault();
                 IPAddress.TryParse(ipn, out result);
             }
+
             return result;
         }
     }

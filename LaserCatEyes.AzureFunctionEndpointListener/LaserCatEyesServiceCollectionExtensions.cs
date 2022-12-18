@@ -1,6 +1,6 @@
 ﻿using LaserCatEyes.DataServiceSdk;
-using LaserCatEyes.Domain.Models;
 using LaserCatEyes.Domain;
+using LaserCatEyes.Domain.Models;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -43,7 +43,7 @@ namespace LaserCatEyes.AzureFunctionEndpointListener
             services.AddTransient<AzureFunctionEndpointListenerMiddleware>();
             return services;
         }
-        
+
         public static IFunctionsWorkerApplicationBuilder UseLaserCatEyesEndpointListenerMiddleware(this IFunctionsWorkerApplicationBuilder services)
         {
             services.UseMiddleware<AzureFunctionEndpointListenerMiddleware>();

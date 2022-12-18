@@ -34,7 +34,7 @@ namespace SampleNetServerApp.Controllers
                 })
                 .ToArray();
         }
-        
+
         [HttpGet("Error")]
         public IEnumerable<WeatherForecast> GetError()
         {

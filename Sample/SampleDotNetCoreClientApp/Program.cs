@@ -49,8 +49,8 @@ namespace SampleDotNetCoreClientApp
 
                 await client.GetAsync($"{baseDomainFunction}/api/Function1?" +
                                       $"Id={fakeData.Id}&StringData={fakeData.StringData}&DoubleData={fakeData.DoubleData}");
-                
-                
+
+
                 Console.Write(".");
                 Thread.Sleep(1000);
 
