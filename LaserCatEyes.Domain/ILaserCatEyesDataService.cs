@@ -2,12 +2,11 @@
 using System.Threading.Tasks;
 using LaserCatEyes.Domain.Models;
 
-namespace LaserCatEyes.Domain
+namespace LaserCatEyes.Domain;
+
+public interface ILaserCatEyesDataService
 {
-    public interface ILaserCatEyesDataService
-    {
-        bool IsServiceReady();
-        void Report(PackageData data);
-        Task<HttpResponseMessage> ReportTask(PackageData data);
-    }
+    bool IsServiceReady();
+    void Report(PackageData data);
+    Task<HttpResponseMessage> ReportTask(PackageData data);
 }

@@ -1,9 +1,8 @@
 ﻿using System;
 
-namespace LaserCatEyes.Domain.Models
+namespace LaserCatEyes.Domain.Models;
+
+public class SubAppUpdateResponseModel
 {
-    public class SubAppUpdateResponseModel
-    {
-        public Guid DeviceId { get; set; }
-    }
+    public Guid DeviceId { get; set; }
 }

@@ -6,21 +6,27 @@ using LaserCatEyes.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace LaserCatEyes.DataServiceSdk
+namespace LaserCatEyes.DataServiceSdk;
+
+public class LaserCatEyesDataService : ILaserCatEyesDataService
 {
-    public class LaserCatEyesDataService : ILaserCatEyesDataService
+    private const string AlgoronaClientId = "989C784C-2EB2-4666-8796-D7494EBB745D";
+
+    private readonly HttpClient _client = HttpClientFactory.Create(new HttpClientHandler()
     {
-        private readonly HttpClient _client = HttpClientFactory.Create(new HttpClientHandler()
-        {
-            ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
-        });
+        ServerCertificateCustomValidationCallback = (_, _, _, _) => true
+    });
 
-        private readonly Guid _deviceId;
-        private readonly LaserCatEyesOptions _laserCatEyesOptions;
-        private readonly LaserCatEyesSystemOptions _laserCatEyesSystemOptions;
-        private readonly bool _serviceReady;
+    private readonly Guid _deviceId;
+    private readonly LaserCatEyesOptions _laserCatEyesOptions;
+    private readonly LaserCatEyesSystemOptions _laserCatEyesSystemOptions;
+    private readonly ILogger<LaserCatEyesDataService> _logger;
+    private readonly bool _serviceReady;
 
-        public LaserCatEyesDataService(IOptions<LaserCatEyesOptions> laserCatEyesOptions, IOptions<LaserCatEyesSystemOptions> laserCatEyesSystemOptions, ILogger<LaserCatEyesDataService> logger)
+    public LaserCatEyesDataService(IOptions<LaserCatEyesOptions> laserCatEyesOptions, IOptions<LaserCatEyesSystemOptions> laserCatEyesSystemOptions, ILogger<LaserCatEyesDataService> logger)
+    {
+        _logger = logger;
+        try
         {
             _laserCatEyesOptions = laserCatEyesOptions.Value;
             _laserCatEyesSystemOptions = laserCatEyesSystemOptions.Value;
@@ -34,7 +40,7 @@ namespace LaserCatEyes.DataServiceSdk
             var deviceName = $"{Environment.MachineName}:{Environment.UserName}";
             _laserCatEyesOptions.DeviceUuid ??= Utilities.ToGuid(deviceName);
 
-            var subApp = new SubAppUpdate
+            SubAppUpdate subApp = new()
             {
                 Device = new Device
                 {
@@ -52,7 +58,7 @@ namespace LaserCatEyes.DataServiceSdk
             };
 
             _client.BaseAddress = new Uri(_laserCatEyesSystemOptions.BaseAddress);
-            _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaClientId, _laserCatEyesSystemOptions.AlgoronaClientId);
+            _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaClientId, !string.IsNullOrEmpty(_laserCatEyesSystemOptions.AlgoronaClientId) ? _laserCatEyesSystemOptions.AlgoronaClientId : AlgoronaClientId);
             _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaCulture, _laserCatEyesSystemOptions.AlgoronaCulture);
             _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaDeviceUuid, _laserCatEyesOptions.DeviceUuid.ToString());
             _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaAppKey, _laserCatEyesOptions.AppKey);
@@ -63,39 +69,51 @@ namespace LaserCatEyes.DataServiceSdk
             _client.DefaultRequestHeaders.Add(Constants.Headers.AlgoronaDeviceId, _deviceId.ToString());
             _serviceReady = true;
         }
-
-
-        public async Task<HttpResponseMessage> ReportTask(PackageData data)
+        catch (Exception e)
         {
-            if (!_serviceReady)
-            {
-                return null;
-            }
+            logger.LogError(e, "LaserCatEyes Error on initialization");
+        }
+    }
 
+
+    public async Task<HttpResponseMessage> ReportTask(PackageData data)
+    {
+        if (!_serviceReady)
+        {
+            return null;
+        }
+
+        try
+        {
             data.DeviceUuid = _laserCatEyesOptions.DeviceUuid;
             data.DeviceId = _deviceId;
             return await _client.PostAsJsonAsync(_laserCatEyesSystemOptions.Endpoints.DataSendPackage, data);
         }
-
-
-        public bool IsServiceReady()
+        catch (Exception e)
         {
-            return _serviceReady;
+            _logger.LogError(e, "LaserCatEyes Error on initialization");
+            return null;
+        }
+    }
+
+
+    public bool IsServiceReady()
+    {
+        return _serviceReady;
+    }
+
+    public void Report(PackageData data)
+    {
+        if (!_serviceReady)
+        {
+            return;
         }
 
-        public void Report(PackageData data)
-        {
-            if (!_serviceReady)
-            {
-                return;
-            }
+        Task.Run(() => ReportTask(data)).Forget();
+    }
 
-            Task.Run(() => ReportTask(data)).Forget();
-        }
-
-        private async Task<HttpResponseMessage> Init(SubAppUpdate data)
-        {
-            return await _client.PutAsJsonAsync(_laserCatEyesSystemOptions.Endpoints.AppUpdateSubApp, data);
-        }
+    private async Task<HttpResponseMessage> Init(SubAppUpdate data)
+    {
+        return await _client.PutAsJsonAsync(_laserCatEyesSystemOptions.Endpoints.AppUpdateSubApp, data);
     }
 }

@@ -10,23 +10,25 @@ namespace LaserCatEyes.HttpClientListener
     public class LaserCatEyesHttpMessageHandler : DelegatingHandler
     {
         private readonly ILaserCatEyesDataService _laserCatEyesDataService;
+        private readonly ILogger<LaserCatEyesHttpMessageHandler> _logger;
         private readonly bool _serviceReady;
 
         public LaserCatEyesHttpMessageHandler(ILaserCatEyesDataService laserCatEyesDataService, ILogger<LaserCatEyesHttpMessageHandler> logger)
         {
             if (laserCatEyesDataService == null)
             {
-                logger.LogWarning($"Couldn't bind {nameof(LaserCatEyesHttpMessageHandler)} because {nameof(ILaserCatEyesDataService)} is null");
+                logger.LogWarning("Couldn't bind LaserCatEyesHttpMessageHandler because ILaserCatEyesDataService is null");
                 return;
             }
 
             if (!laserCatEyesDataService.IsServiceReady())
             {
-                logger.LogWarning($"Couldn't bind {nameof(LaserCatEyesHttpMessageHandler)} because {nameof(ILaserCatEyesDataService)} was not ready");
+                logger.LogWarning("Couldn't bind LaserCatEyesHttpMessageHandler because ILaserCatEyesDataService was not ready");
                 return;
             }
 
             _laserCatEyesDataService = laserCatEyesDataService;
+            _logger = logger;
             _serviceReady = true;
         }
 
@@ -38,11 +40,27 @@ namespace LaserCatEyes.HttpClientListener
             }
 
             var operationId = Guid.NewGuid();
-            _laserCatEyesDataService.Report(PackageDataHelper.RequestPackageDataFromHttpRequestMessage(operationId, request));
+            try
+            {
+                _laserCatEyesDataService.Report(PackageDataHelper.RequestPackageDataFromHttpRequestMessage(operationId, request));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error while reporting request package data");
+            }
+
 
             var response = await base.SendAsync(request, cancellationToken);
+            try
+            {
+                _laserCatEyesDataService.Report(PackageDataHelper.ResponsePackageDataFromHttpResponseMessage(operationId, response));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error while reporting response package data");
+            }
 
-            _laserCatEyesDataService.Report(PackageDataHelper.ResponsePackageDataFromHttpResponseMessage(operationId, response));
+
             return response;
         }
     }

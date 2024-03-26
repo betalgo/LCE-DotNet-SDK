@@ -12,9 +12,9 @@ namespace LaserCatEyes.HttpClientListener
         {
             return PackageData.CreateRequestPackage(
                 id,
-                request.RequestUri.ToString(),
+                request.RequestUri?.ToString(),
                 Utilities.HttpMethodStringToEnumConverter(request.Method.Method),
-                request.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
+                request.Headers.SelectMany(r => r.Value.Select(value => new HeaderCouple(r.Key, value))).ToList(),
                 request.Content?.ReadAsStringAsync().Result,
                 DateTime.UtcNow,
                 null,
@@ -25,7 +25,7 @@ namespace LaserCatEyes.HttpClientListener
         {
             return PackageData.CreateResponsePackage(
                 id,
-                (int) response.StatusCode, response.Headers.SelectMany(r => r.Value.Select(value => $"{r.Key}:{value}")).ToList(),
+                (int)response.StatusCode, response.Headers.SelectMany(r => r.Value.Select(value => new HeaderCouple(r.Key, value))).ToList(),
                 response.Content.ReadAsStringAsync().Result,
                 DateTime.UtcNow);
         }

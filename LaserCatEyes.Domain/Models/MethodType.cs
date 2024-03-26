@@ -1,16 +1,15 @@
 ﻿// ReSharper disable InconsistentNaming
 
-namespace LaserCatEyes.Domain.Models
+namespace LaserCatEyes.Domain.Models;
+
+public enum MethodType
 {
-    public enum MethodType
-    {
-        GET,
-        POST,
-        PUT,
-        DELETE,
-        HEAD,
-        OPTIONS,
-        PATCH,
-        TRACE
-    }
+    GET,
+    POST,
+    PUT,
+    DELETE,
+    HEAD,
+    OPTIONS,
+    PATCH,
+    TRACE
 }
