@@ -1,23 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace LaserCatEyes.Domain.Models
-{
-    public class ResponsePackage
-    {
-        public ResponsePackage(Guid id, int? statusCode, List<string> headers, string body, DateTime? timeStamp)
-        {
-            Id = id;
-            StatusCode = statusCode;
-            Headers = headers;
-            Body = body;
-            TimeStamp = timeStamp ?? DateTime.UtcNow;
-        }
+namespace LaserCatEyes.Domain.Models;
 
-        public Guid Id { get; set; }
-        public DateTime TimeStamp { get; set; }
-        public int? StatusCode { get; set; }
-        public List<string> Headers { get; set; }
-        public string Body { get; set; }
-    }
+public class ResponsePackage(Guid id, int? statusCode, List<HeaderCouple> headerCouples, string body, DateTime? timeStamp)
+{
+    public Guid Id { get; set; } = id;
+    public DateTime TimeStamp { get; set; } = timeStamp ?? DateTime.UtcNow;
+    public int? StatusCode { get; set; } = statusCode;
+    public List<HeaderCouple> HeaderCouples { get; set; } = headerCouples;
+    public string Body { get; set; } = body;
 }
