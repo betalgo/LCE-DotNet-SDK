@@ -1,7 +1,12 @@
 ﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 using LaserCatEyes.DataServiceSdk;
 using LaserCatEyes.Domain;
 using LaserCatEyes.Domain.Models;
+using LaserCatEyes.HttpClientListener;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -56,6 +61,24 @@ namespace LaserCatEyes.HttpClientListener
             }
 
             return services;
+        }
+
+        public static IHttpClientBuilder AddLaserCatEyesHttpClientListener(this IHttpClientBuilder builder)
+        {
+            var services = builder.Services;
+
+            if (services.All(x => x.ServiceType != typeof(ILaserCatEyesDataService)))
+            {
+                services.AddLaserCatEyesHttpClientListener(false);
+            }
+
+            builder.AddHttpMessageHandler(serviceProvider =>
+            {
+                var handler = serviceProvider.GetRequiredService<LaserCatEyesHttpMessageHandler>();
+                return handler;
+            });
+
+            return builder;
         }
     }
 }

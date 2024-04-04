@@ -116,7 +116,7 @@ or
             services.AddHttpClient("myClient", c =>
             {
                 //your settings
-            }).AddHttpMessageHandler<LaserCatEyesHttpMessageHandler>();
+            }).AddLaserCatEyesHttpClientListener();
         }
     }
 ```
