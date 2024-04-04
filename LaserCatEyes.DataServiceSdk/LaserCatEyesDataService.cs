@@ -37,7 +37,8 @@ public class LaserCatEyesDataService : ILaserCatEyesDataService
                 return;
             }
 
-            var deviceName = $"{Environment.MachineName}:{Environment.UserName}";
+            var websiteInstanceId = Environment.GetEnvironmentVariable("WEBSITE_INSTANCE_ID");
+            var deviceName = string.IsNullOrEmpty(websiteInstanceId) ? $"{Environment.MachineName}:{Environment.UserName}" : $"stateless:{Environment.UserName}";
             _laserCatEyesOptions.DeviceUuid ??= Utilities.ToGuid(deviceName);
 
             SubAppUpdate subApp = new()
