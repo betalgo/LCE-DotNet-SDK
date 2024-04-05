@@ -4,7 +4,7 @@
 		<TargetFrameworks>net8.0;net7.0;net6.0;</TargetFrameworks>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-				<Copyright>Betalgo Up Ltd.</Copyright>
+		<Copyright>Betalgo Up Ltd.</Copyright>
 		<LangVersion>Latest</LangVersion>
 		<PackageProjectUrl>https://portal.lasercateyes.com</PackageProjectUrl>
 		<PackageIcon>LaserCatEyes_Logo.png</PackageIcon>
@@ -13,7 +13,7 @@
 		<Authors>Betalgo Up Ltd.</Authors>
 		<Company>Betalgo Up Ltd.</Company>
 		<Product>Laser Cat Eyes</Product>
-				<Description>
+		<Description>
 			lasercateyes.com
 			Laser Cat Eyes is an online debugging tool that can capture, inspect, monitor all HTTP/HTTPS traffic from your application. It contains a network function like diagnose network issues, etc.
 
@@ -33,12 +33,10 @@
 	<ItemGroup>
 		<ProjectReference Include="..\LaserCatEyes.DataServiceSdk\LaserCatEyes.DataServiceSdk.csproj" />
 	</ItemGroup>
+
 	<ItemGroup>
-	  <None Update="LaserCatEyes_Logo.png">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
-	  <None Update="README.md">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-	  </None>
+		<None Include="LaserCatEyes_Logo.png" Pack="true" PackagePath="" />
+		<None Include="README.md" Pack="true" PackagePath="" />
 	</ItemGroup>
+
 </Project>
